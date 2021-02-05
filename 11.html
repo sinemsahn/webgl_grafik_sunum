@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            .slidecontainer {
+              width: 100%;
+            }
+            
+            .slider {
+              -webkit-appearance: none;
+              width: 100%;
+              height: 25px;
+              background: #d3d3d3;
+              outline: none;
+              opacity: 0.7;
+              -webkit-transition: .2s;
+              transition: opacity .2s;
+            }
+            
+            .slider:hover {
+              opacity: 1;
+            }
+            
+            .slider::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              appearance: none;
+              width: 25px;
+              height: 25px;
+              background: #4CAF50;
+              cursor: pointer;
+            }
+            
+            .slider::-moz-range-thumb {
+              width: 25px;
+              height: 25px;
+              background: #4CAF50;
+              cursor: pointer;
+            }
+            </style>
+    </head>
+   <body>
+      <canvas width = "800" height = "800" id = "my_Canvas"></canvas>
+
+      
+    <div class="slidecontainer">
+        <input type="range" min="-300" max="300" value="0" class="slider" id="Range">
+        <p>Dönme Açısı: <span id="demo"></span></p>
+      </div>
+      <button onclick="degre()">Açı Değiştir</button>
+
+    <div class="slidecontainer">
+        <input type="range" min="-100" max="100" value="0" class="slider" id="x_myRange">
+        <p>X Ekseni Değer: <span id="x_demo"></span></p>
+      </div>
+      <div class="slidecontainer">
+        <input type="range" min="-100" max="100" value="0" class="slider" id="y_myRange">
+        <p>Y Ekseni Değer: <span id="y_demo"></span></p>
+      </div>
+
+      <button onclick="otele()">Değiştir</button>
+
+
+      <div class="slidecontainer">
+        <input type="range" min="-300" max="300" value="0" class="slider" id="xs_myRange">
+        <p>Sx Büyütme Ekseni Değer: <span id="xs_demo"></span></p>
+      </div>
+      <div class="slidecontainer">
+        <input type="range" min="-300" max="300" value="0" class="slider" id="ys_myRange">
+        <p>Sy Büyütme Ekseni Değer: <span id="ys_demo"></span></p>
+      </div>
+      
+
+      <button onclick="buyut()">Boyut Değiştir</button>
+
+
+
+
+
+
+
+
+
+      <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 coordinates;
+        uniform vec4 translation;
+        uniform float theta;
+        uniform mat4 u_xformMatrix;
+
+        attribute vec3 color;
+        varying vec3 vColor;
+        void main(){
+            gl_Position.x = cos(theta) * coordinates.x - sin(theta) * coordinates.y;
+            gl_Position.y = sin(theta) * coordinates.x +cos(theta) * coordinates.y;
+            gl_Position.z = 0.0;
+            gl_Position.w = 1.0;
+            gl_Position += coordinates + translation;
+            gl_Position += u_xformMatrix * coordinates;
+            vColor = color;
+        }
+    </script>
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        varying vec3 vColor;
+        void main() {
+            gl_FragColor =  vec4(vColor, 1.);;//bu ��genin rengi i�in
+        }
+    </script>
+    
+      <script src="11.js">
+     
+        </script>
+     
+
+   </body>
+</html>
