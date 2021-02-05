@@ -11,3 +11,6 @@ kafes gösterim ve dolgulu gösterim olarak ayarlayıp modelimizin döndürme i�
 
 
 
+# 11 ile başlayanlar:
+Bu dosyalar ise vizeden önce verilmiş olan ödev için hazırlanmıştır. Adımızın ilk harfi ve soyadımızın son harfinden oluşan "SN" ve dönme , ölçekleme, öteleme işlemlerini yapabilen bir kod istemişlerdi.
+
